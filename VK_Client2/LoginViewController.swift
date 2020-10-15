@@ -23,37 +23,49 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var logReg: UISegmentedControl!
     @IBOutlet weak var login: UITextField!
     @IBOutlet weak var password: UITextField!
-    @IBAction func enter(_ sender: Any) {
-        if logReg.selectedSegmentIndex == 0 && login.text == user[0] && password.text == user[1] && login.text != "" && password.text != "" {
-           stateLabel.text = "Добро пожаловать!"
-            return
-        } else if logReg.selectedSegmentIndex == 1 {
-            user[1] = password.text ?? ""
-            user[0] = login.text ?? ""
-            stateLabel.text = "Пользователь зарегистрирован"
-            return
-        }
-        stateLabel.text = "Введены неверные данные"
-        print(login.text, password.text, user[0], user[1])
-        return
-    }
     
+        
+        override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+            if logReg.selectedSegmentIndex == 0 && login.text == user[0] && password.text == user[1] && login.text != "" && password.text != "" {
+                stateLabel.text = "Добро пожаловать!"
+                return true
+            } else if logReg.selectedSegmentIndex == 1 {
+                user[1] = password.text ?? ""
+                user[0] = login.text ?? ""
+                stateLabel.text = "Пользователь зарегистрирован"
+                return false
+            }
+            stateLabel.text = "Введены неверные данные"
+            return false
+        }
+    
+    
+    @IBAction func Tap(_ sender: Any) {
+        scrollView.endEditing(true)
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc
     func keyboardWillShow(notification: Notification) {
         guard let keyboardRect = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
-        
         scrollView.contentInset.bottom = keyboardRect.height
+    }
+    
+    @objc
+    func keyboardWillHide(notification: Notification) {
+        scrollView.contentInset = .zero
     }
     
     override func viewDidLoad() {
