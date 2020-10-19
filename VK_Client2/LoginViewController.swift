@@ -16,14 +16,12 @@ var user: [String] = [
 
 final class LoginViewController: UIViewController {
     
-    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var vkLabel: UILabel!
     @IBOutlet weak var logReg: UISegmentedControl!
     @IBOutlet weak var login: UITextField!
     @IBOutlet weak var password: UITextField!
-    
         
         override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
             if logReg.selectedSegmentIndex == 0 && login.text == user[0] && password.text == user[1] && login.text != "" && password.text != "" {
