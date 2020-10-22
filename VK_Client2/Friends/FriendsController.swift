@@ -17,18 +17,25 @@ class FriendsController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        tableView.rowHeight = 100
+        tableView.rowHeight = 60
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath)
         let friend = friends.friends[indexPath.row]
         let friendAvatar = friends.images[indexPath.row]
+        imageName = friendAvatar
+        
+        while friends.friends.count >= likeCount.count{
+            likeCount.append(0)
+            buttonState.append(false)
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath)
         
         cell.textLabel?.text = friend
-        cell.contentView.backgroundColor = .blue
-        cell.textLabel?.textColor = .white
-        cell.imageView?.image = UIImage(named: friendAvatar)
+        cell.contentView.backgroundColor = .clear
+        cell.textLabel?.textColor = .black
+        
         
         return cell
     }
@@ -39,7 +46,7 @@ class FriendsController: UITableViewController {
     guard let destination = segue.destination as? FriendCollectionViewController else { return }
         destination.friendWatch.friends.append(friends.friends[tableView.indexPathForSelectedRow!.row])
         destination.friendWatch.images.append(friends.images[tableView.indexPathForSelectedRow!.row])
-        
+        destination.likesCount = tableView.indexPathForSelectedRow!.row
     }
 
 }
