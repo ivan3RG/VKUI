@@ -27,7 +27,7 @@ class FriendCollectionViewController: UICollectionViewController {
         stateLike = indexLike
         
         cell.photoLabel.text = ("\(friendWatch.friends[indexPath.row]) аватар")
-        cell.imageFriend.image = UIImage(named: friendWatch.images[indexPath.row])
+        cell.imageFriend.image = UIImage(named: friendWatch.images[indexPath.row] ?? "imageNN")
         cell.like.setupView()
         return cell
     }

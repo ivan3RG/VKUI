@@ -13,8 +13,8 @@ class UserGroups:
 UITableViewController {
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-
+        tableView.register(UINib(nibName: "MyCell", bundle: nil), forCellReuseIdentifier: "MyCell")
+        tableView.rowHeight = 60
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -24,12 +24,17 @@ UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "userGroupCell", for: indexPath)
         let group = userGroupList.groups[indexPath.row]
-        cell.textLabel?.text = group
-        cell.imageView?.image = UIImage(named: userGroupList.groupsImages[indexPath.row])
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell
+        //cell.textLabel?.text = group
+        
+        
+        cell.configure(title: group, image: userGroupList.groupsImages[indexPath.row], color: .clear)
+        
+        /*cell.imageView?.image = UIImage(named: userGroupList.groupsImages[indexPath.row])
         cell.contentView.backgroundColor = .blue
-        cell.textLabel?.textColor = .white
+        cell.textLabel?.textColor = .white*/
         
         // Configure the cell...
 

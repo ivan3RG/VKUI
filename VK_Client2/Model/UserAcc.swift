@@ -10,9 +10,9 @@ import Foundation
 class UserAcc {
    
     var friends: [String]
-    var images: [String]
+    var images: [String?]
     
-    init(friends: [String]=[], images: [String]=[]){
+    init(friends: [String]=[], images: [String?]=[]){
         self.friends = friends
         self.images = images
     }

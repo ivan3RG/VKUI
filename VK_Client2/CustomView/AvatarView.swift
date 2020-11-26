@@ -6,9 +6,12 @@
 //
 
 import UIKit
+
 var imageName: String? = nil
 
 @IBDesignable class AvatarView: UIView {
+    
+    
     
     var avatar = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     var shadow = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
@@ -53,12 +56,12 @@ var imageName: String? = nil
             avatar.layer.masksToBounds = true
             addSubview(avatar)
             
-            shadow.layer.borderWidth = 2.0
+            shadow.layer.borderWidth = 0.5
             shadow.layer.borderColor = UIColor.black.cgColor
             shadow.layer.cornerRadius = 25
             shadow.layer.shadowColor = shadowColor
             shadow.layer.shadowOpacity = shadowOpacity
-            shadow.layer.shadowRadius = 100
+            shadow.layer.shadowRadius = 25
             shadow.layer.shadowOffset = CGSize.zero
             addSubview(shadow) //shadow not work
     }
