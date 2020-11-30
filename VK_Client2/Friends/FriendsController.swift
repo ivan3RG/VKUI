@@ -8,47 +8,60 @@
 import UIKit
 
 class FriendsController: UITableViewController {
-    
-    var sectionCounter: Int = 0
 
     var friends = UserAcc(friends: ["Василий Пупкин", "Васька Пупкин", "Иван Иванов", "Татьяна Мухина"], images: ["image1", nil, "image2", "image3"])
+    
+    var sectionNames = [String]()
     
     var names:[Character: [String]] = ["А":[], "Б":[], "В":[], "Г":[], "Д":[], "Е":[], "Ж":[], "З":[], "И":[], "Й":[], "К":[], "Л":[], "М":[], "Н":[], "О":[], "П":[], "Р":[], "С":[], "Т":[], "У":[], "Ф":[], "Х":[], "Ц":[], "Ч":[], "Ш":[], "Щ":[], "Ы":[], "Э":[], "Ю":[], "Я":[], "A":[], "B":[], "C":[], "D":[], "E":[], "F":[], "G":[], "H":[], "I":[], "J":[], "K":[], "L":[], "N":[], "M":[], "O":[], "P":[], "Q":[], "R":[], "T":[], "S":[], "U":[], "V":[], "W":[], "X":[], "Y":[], "Z":[]]
     
     func abc(words: [String]){
         
         for i in 0...(friends.friends.count-1){
-            let abc = friends.friends[i]
-            names[abc[abc.startIndex]]?.append(friends.friends[i])
+            names[friends.friends[i][friends.friends[i].startIndex]]?.append(friends.friends[i])
             }
         for j in names.values{
-            if j.count > 0{
-                sectionCounter+=1
-            }
             
+            if j.count > 0{
+                var abc = [Character]()
+                abc.append(j[0][j[0].startIndex])
+                let title = String(abc)
+                print(title)
+                sectionNames.append(title)
+            }
         }
+        sectionNames.sort()
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return sectionNames
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return friends.friends.count
+        return names[sectionNames[section][sectionNames[section].startIndex]]?.count ?? 0
     }
     
     override func viewDidLoad() {
-        print(abc(words: friends.friends))
+        abc(words: friends.friends)
         
         tableView.register(UINib(nibName: "MyCell", bundle: nil), forCellReuseIdentifier: "MyCell")
         tableView.rowHeight = 60
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionCounter
+        return sectionNames.count
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionNames[section]
+    }
+    
+    var i = 0
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let friend = friends.friends[indexPath.row]
-        let friendAvatar = friends.images[indexPath.row]
-        //imageName = friendAvatar
+        let friend = names[sectionNames[indexPath.section][sectionNames[indexPath.section].startIndex]]?[indexPath.row]
+        
+        let friendAvatar = friends.images[i] //bad idea. I need cortage
+        i += 1
         
         while friends.friends.count >= likeCount.count{
             likeCount.append(0)
@@ -57,7 +70,7 @@ class FriendsController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell
         
-        cell.configure(title: friend, image: friendAvatar ?? "imageNN", color: .clear)
+        cell.configure(title: friend ?? "Deleted", image: friendAvatar ?? "imageNN", color: .clear)
         cell.textLabel?.textColor = .black
         
         return cell
@@ -67,14 +80,11 @@ class FriendsController: UITableViewController {
         performSegue(withIdentifier: "showFriend", sender: nil)
     }
     
-   
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard segue.identifier == "showFriend" else { return }
     guard let destination = segue.destination as? FriendCollectionViewController else { return }
-        destination.friendWatch.friends.append(friends.friends[tableView.indexPathForSelectedRow!.row])
+        destination.friendWatch.friends.append(names[sectionNames[tableView.indexPathForSelectedRow!.section][sectionNames[tableView.indexPathForSelectedRow!.section].startIndex]]?[tableView.indexPathForSelectedRow!.row] ?? "NaN")
         destination.friendWatch.images.append(friends.images[tableView.indexPathForSelectedRow!.row])
         destination.likesCount = tableView.indexPathForSelectedRow!.row
     }
-
 }
