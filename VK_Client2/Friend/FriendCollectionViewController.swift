@@ -28,7 +28,12 @@ class FriendCollectionViewController: UICollectionViewController {
         
         cell.photoLabel.text = ("\(friendWatch.friends[indexPath.row]) аватар")
         cell.imageFriend.image = UIImage(named: friendWatch.images[indexPath.row] ?? "imageNN")
+        if cell.imageFriend.image == UIImage(named: "ImageNN"){
+            cell.like.removeFromSuperview()
+            return cell
+        }
         cell.like.setupView()
+        
         return cell
     }
 

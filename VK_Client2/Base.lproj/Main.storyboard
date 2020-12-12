@@ -17,112 +17,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BjW-sS-4e8">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BjW-sS-4e8">
                                 <rect key="frame" x="0.0" y="88" width="390" height="706"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k5P-lf-WnE">
                                         <rect key="frame" x="0.0" y="16" width="390" height="690"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="top" axis="vertical" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6LY-6L-nFh">
-                                                <rect key="frame" x="97.666666666666686" y="0.0" width="195" height="205.33333333333334"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вход" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pi1-TE-M54">
-                                                        <rect key="frame" x="77.999999999999986" y="0.0" width="39" height="20.333333333333332"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Seo-OB-IZI">
-                                                        <rect key="frame" x="0.0" y="36.333333333333343" width="195" height="32"/>
-                                                        <segments>
-                                                            <segment title="Вход"/>
-                                                            <segment title="Регистрация"/>
-                                                        </segments>
-                                                    </segmentedControl>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Логин" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qMs-ce-fAS">
-                                                        <rect key="frame" x="0.0" y="83.333333333333343" width="195" height="34"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="textColor" systemColor="linkColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Пароль" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UBa-sg-d6d">
-                                                        <rect key="frame" x="0.0" y="133.33333333333334" width="195" height="34"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="textColor" systemColor="linkColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbA-au-sTF">
-                                                        <rect key="frame" x="86.666666666666671" y="183.33333333333331" width="21.666666666666671" height="22"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" image="return" catalog="system">
-                                                            <color key="titleColor" systemColor="linkColor"/>
-                                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <segue destination="NL7-1u-AW2" kind="show" id="T20-9s-dPb"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="UBa-sg-d6d" firstAttribute="height" secondItem="qMs-ce-fAS" secondAttribute="height" id="N0H-yI-ocg"/>
-                                                    <constraint firstItem="UBa-sg-d6d" firstAttribute="width" secondItem="qMs-ce-fAS" secondAttribute="width" id="OU5-2l-Jug"/>
-                                                </constraints>
-                                            </stackView>
+                                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gby-6p-07x">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="690"/>
+                                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <wkWebViewConfiguration key="configuration">
+                                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                                    <wkPreferences key="preferences"/>
+                                                </wkWebViewConfiguration>
+                                            </wkWebView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstItem="6LY-6L-nFh" firstAttribute="top" secondItem="k5P-lf-WnE" secondAttribute="top" id="Doh-ml-ChM"/>
-                                            <constraint firstItem="6LY-6L-nFh" firstAttribute="centerX" secondItem="k5P-lf-WnE" secondAttribute="centerX" id="GNu-NZ-BkF"/>
+                                            <constraint firstItem="gby-6p-07x" firstAttribute="top" secondItem="k5P-lf-WnE" secondAttribute="top" id="6EW-gt-IAd"/>
+                                            <constraint firstAttribute="trailing" secondItem="gby-6p-07x" secondAttribute="trailing" id="Bb4-EH-JXG"/>
+                                            <constraint firstAttribute="bottom" secondItem="gby-6p-07x" secondAttribute="bottom" id="Jbr-qd-ajx"/>
+                                            <constraint firstItem="gby-6p-07x" firstAttribute="leading" secondItem="k5P-lf-WnE" secondAttribute="leading" id="Upl-WP-q3F"/>
                                         </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="NgY-gj-eqB" appends="YES" id="3Ii-Lb-l7T"/>
                                         </connections>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VK ©" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2b-Ja-UQ7">
-                                        <rect key="frame" x="174.66666666666666" y="237.33333333333331" width="41" height="20.333333333333314"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="k5P-lf-WnE" firstAttribute="top" secondItem="BjW-sS-4e8" secondAttribute="top" constant="16" id="Xd1-5u-6nr"/>
                                     <constraint firstItem="k5P-lf-WnE" firstAttribute="centerX" secondItem="BjW-sS-4e8" secondAttribute="centerX" id="fOw-yO-CHd"/>
                                     <constraint firstItem="k5P-lf-WnE" firstAttribute="bottom" secondItem="aZi-nA-JOt" secondAttribute="bottom" id="ga0-fg-QbN"/>
                                     <constraint firstAttribute="trailing" secondItem="k5P-lf-WnE" secondAttribute="trailing" id="gli-lU-T3c"/>
-                                    <constraint firstAttribute="bottom" secondItem="T2b-Ja-UQ7" secondAttribute="bottom" id="oOC-PZ-sMA"/>
                                     <constraint firstItem="k5P-lf-WnE" firstAttribute="leading" secondItem="BjW-sS-4e8" secondAttribute="leading" id="pce-da-zxn"/>
-                                    <constraint firstItem="T2b-Ja-UQ7" firstAttribute="top" secondItem="6LY-6L-nFh" secondAttribute="bottom" constant="16" id="qWX-3i-9rB"/>
-                                    <constraint firstItem="k5P-lf-WnE" firstAttribute="centerX" secondItem="T2b-Ja-UQ7" secondAttribute="centerX" id="xlz-Qd-VVb"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="fkR-x4-L34"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="aZi-nA-JOt"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="linkColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BjW-sS-4e8" secondAttribute="bottom" constant="16" id="1bS-sv-y1I"/>
                             <constraint firstItem="BjW-sS-4e8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1el-A2-F3R"/>
-                            <constraint firstItem="qMs-ce-fAS" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="2WR-se-mDs"/>
                             <constraint firstItem="BjW-sS-4e8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aAL-Mz-qBc"/>
                             <constraint firstItem="BjW-sS-4e8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ePw-sj-P5b"/>
-                            <constraint firstItem="Seo-OB-IZI" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="t1Y-qs-Xag"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="VK client" id="ZW8-af-ciJ">
                         <barButtonItem key="backBarButtonItem" title="Change user" id="6nV-fy-3bD"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="logReg" destination="Seo-OB-IZI" id="UwD-y2-GJ8"/>
-                        <outlet property="login" destination="qMs-ce-fAS" id="lRg-3e-A3Y"/>
-                        <outlet property="password" destination="UBa-sg-d6d" id="KPB-Qv-Kry"/>
                         <outlet property="scrollView" destination="BjW-sS-4e8" id="GhS-No-rGA"/>
-                        <outlet property="stateLabel" destination="Pi1-TE-M54" id="JGP-SB-ce0"/>
-                        <outlet property="vkLabel" destination="T2b-Ja-UQ7" id="7Eg-18-QiX"/>
+                        <outlet property="webview" destination="gby-6p-07x" id="fMX-wZ-MMk"/>
+                        <segue destination="NL7-1u-AW2" kind="show" id="5G9-cA-3IH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -405,10 +354,6 @@
         <image name="newspaper.fill" catalog="system" width="128" height="111"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
-        <image name="return" catalog="system" width="32" height="32"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -13,6 +13,7 @@ class Session {
     
     private init(){}
     
-    var token: String = ""
-    var userId = 0
+    var token: String? = nil
+    var userId: String? = nil
+    let v: String? = "5.126"
 }
