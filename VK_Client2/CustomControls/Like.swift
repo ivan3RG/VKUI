@@ -15,10 +15,11 @@ var buttonState:[Bool] = []
     var likeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 280, height: 20))
     var heartColor: UIColor = .blue
     var fillHeartColor: UIColor = .white
+    var serv = Services()
     
     func setupView() {
         
-        if buttonState[indexLike] == true{
+        /*if buttonState[indexLike] == true{
             fillHeartColor = .red
             heartColor = .red
         } else {
@@ -26,7 +27,7 @@ var buttonState:[Bool] = []
             heartColor = .blue
         }
         
-        likeLabel.text = "\(likeCount[indexLike] )"
+        likeLabel.text = "\(likeCount[indexLike] )"*/
         likeLabel.textColor = heartColor
         likeLabel.textAlignment = .right;
         
@@ -51,7 +52,14 @@ var buttonState:[Bool] = []
     }
     
     @objc private func updateLikes(_ sender: HeartButton) {
-       if buttonState[stateLike] == false {
+        
+        serv.addLike(ownerId: "161330237", token: session.token, v: session.v, itemId: "457245268") { (items) in
+            self.likeLabel.text = String(items)
+            self.fillHeartColor = .red
+            self.heartColor = .red
+            self.setupView()
+            
+       /*if buttonState[stateLike] == false {
             heartColor = .red
             likeCount[indexLike] += 1
             fillHeartColor = .red
@@ -63,7 +71,8 @@ var buttonState:[Bool] = []
             fillHeartColor = .white
             buttonState[stateLike] =  false
             self.setupView()
-        }
+        }*/
+    }
     }
     
     override func layoutSubviews() {

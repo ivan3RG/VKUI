@@ -14,9 +14,9 @@ final class MyCell: UITableViewCell {
     
     @IBOutlet weak var ava: AvatarView!
     
-    func configure(title: String, image: String, color: UIColor){
+    func configure(title: String, image: UIImage?, color: UIColor){
         titleLabel.text = title
         myCell.backgroundColor = color
-        ava.avatar.image = UIImage(named: image)
+        ava.avatar.image = image
     }
 }

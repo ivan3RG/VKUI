@@ -124,16 +124,15 @@ extension LoginViewController: WKNavigationDelegate {
         
         let token = params["access_token"]
         
-        print(token as Any)
-        
         session.token = token
         session.userId = params["user_id"]
-        
+        /*
         serv.friendsList(userId: session.userId, token: session.token, v: session.v)//friends of user
         serv.photos(userId: session.userId, token: session.token, v: session.v)
         serv.groups(userId: session.userId, token: session.token, v: session.v)
         serv.groupsSearch(userId: session.userId, token: session.token, v: session.v)
-        
+        */
         decisionHandler(.cancel)
+        performSegue(withIdentifier: "log", sender: (Any).self)
     }
 }
