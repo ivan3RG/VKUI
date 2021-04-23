@@ -7,33 +7,14 @@
 
 import UIKit
 
+var userGroupList = Group()
+
 class UserGroups:
 UITableViewController {
     
-    let session = Session.instance
-    let serv = Services()
-    var userGroupList = Group()
-    
     override func viewDidLoad() {
-        tableView.register(UINib(nibName: "MyCell", bundle: nil), forCellReuseIdentifier: "MyCell")
-        tableView.rowHeight = 60
-        
-        serv.groups(userId: session.userId, token: session.token, v: session.v) { (items) in
-            if items.count > 0{
-            for i in 0...(items.count-1){
-                self.userGroupList.groups.insert(items[i].name, at: i)
-            }
-            for j in 0...(items.count-1){
-                let url = URL(string: items[j].photoUrl)
-                let data = try? Data(contentsOf: url!)
-                if let imageData = data {
-                    let image = UIImage(data: imageData)
-                    self.userGroupList.groupsImages.insert((image ?? UIImage(named: "imageNN"))!, at: j)
-                }
-            }
-            }
-            self.tableView.reloadData()
-        }
+        super.viewDidLoad()
+
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,14 +24,19 @@ UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "userGroupCell", for: indexPath)
+        let group = userGroupList.groups[indexPath.row]
+        cell.textLabel?.text = group
+        cell.imageView?.image = UIImage(named: userGroupList.groupsImages[indexPath.row])
+        cell.contentView.backgroundColor = .blue
+        cell.textLabel?.textColor = .white
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell
-        cell.configure(title: userGroupList.groups[indexPath.row], image: userGroupList.groupsImages[indexPath.row], color: .clear)
         // Configure the cell...
+
         return cell
     }
 
-    /*@IBAction func saveData(_ unwindSegue: UIStoryboardSegue) {
+    @IBAction func saveData(_ unwindSegue: UIStoryboardSegue) {
         guard unwindSegue.identifier == "addGroup" else {
             return
         }
@@ -62,7 +48,7 @@ UITableViewController {
             userGroupList.groupsImages.append(source.packageImage)
         }
         tableView.reloadData()
-    }*/
+    }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
