@@ -11,5 +11,5 @@ class FriendCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photoLabel: UILabel!
     @IBOutlet weak var imageFriend: UIImageView!
-    
+    @IBOutlet weak var like: Like!
 }

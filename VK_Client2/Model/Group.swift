@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 class Group {
     var groups: [String]
-    var groupsImages: [String]
+    var groupsImages: [UIImage]
     
-    init(groups: [String] = [], groupImages: [String] = []){
+    init(groups: [String] = [], groupImages: [UIImage] = []){
         self.groups = groups
         self.groupsImages = groupImages
     }
